@@ -497,6 +497,10 @@ h2 {
   hyphens: auto;
 }
 
+.letter-body + .letter-body {
+  margin-top: 1em;
+}
+
 .letter-signoff {
   margin: 18px 0 0;
   color: #76617b;
