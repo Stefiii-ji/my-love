@@ -22,17 +22,18 @@ The photos in this folder should use these exact filenames:
 - `assets/photo1.webp`
 - `assets/photo2.webp`
 - `assets/photo3.webp`
+- `assets/photo4.webp`
 
-In VS Code, right-click `assets`, choose **Reveal in File Explorer**, and copy your three photos into that folder. The matching photo card in **Our Little Memories 💜** loads its photo when tapped or activated from the keyboard. Tap it again to hide a loaded photo. If a file is missing, the scrapbook placeholder stays visible and explains which file to add.
+In VS Code, right-click `assets`, choose **Reveal in File Explorer**, and copy your four photos into that folder. Each matching photo card in **Our Little Memories 💜** loads its photo when tapped or activated from the keyboard. Tap it again to hide a loaded photo. If a file is missing, the scrapbook placeholder stays visible and explains which file to add.
 
-To test locally, run the site with Live Preview. The journey is Welcome → A little reminder → My apology → The final note and memories. Activate each of the three memory cards on the final screen. Use **Back to the beginning** to return to the welcome screen. For GitHub Pages, upload the three photo files inside the `assets` folder as well as the website files.
+To test locally, run the site with Live Preview. The journey is Welcome → A little reminder → My apology → The final note and memories. Activate each of the four memory cards on the final screen. Use **Back to the beginning** to return to the welcome screen. For GitHub Pages, upload all four photo files inside the `assets` folder as well as the website files.
 
 The second photo (`assets/photo2.webp`) also appears on the **Before anything else...** screen.
 
 ## Publish with GitHub Pages
 
 1. Sign in to GitHub and create a new **public** repository named `stefiii-apology`.
-2. Upload `index.html`, `style.css`, `script.js`, and `README.md` from this folder to the repository's top level (the root). Upload the music file and all three photos from `assets` too, preserving their filenames and folder paths. Do not upload the parent workspace or unrelated folders.
+2. Upload `index.html`, `style.css`, `script.js`, and `README.md` from this folder to the repository's top level (the root). Upload the music file and all four photos from `assets` too, preserving their filenames and folder paths. Do not upload the parent workspace or unrelated folders.
 3. In the repository, open **Settings → Pages**.
 4. Under **Build and deployment**, choose **Deploy from a branch**.
 5. Select the `main` branch and the `/ (root)` folder, then click **Save**.

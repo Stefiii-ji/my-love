@@ -7,6 +7,7 @@ const progressLabel = document.querySelector("#progress-label");
 const musicStatus = document.querySelector("#music-status");
 const musicToggle = document.querySelector("#music-toggle");
 const musicToggleLabel = document.querySelector("#music-toggle-label");
+const musicToggleIcon = document.querySelector(".music-toggle-icon");
 const audio = document.querySelector("#background-music");
 const heartStage = document.querySelector("#heart-stage");
 const heartButton = document.querySelector("#heart-button");
@@ -14,13 +15,18 @@ const heartMessage = document.querySelector("#heart-message");
 const memoryButtons = Array.from(document.querySelectorAll(".memory-toggle"));
 const stepNames = ["Welcome", "A little reminder", "My apology", "The final note and memories"];
 let currentStep = 0;
+let isTransitioning = false;
+let transitionFallback;
+let musicError = "";
+let isMusicStarting = false;
+let musicRequest = 0;
 
 if (audio) {
   audio.volume = 0.35;
 }
 
 function updateMusicControl(isPlaying, status) {
-  if (!musicToggle || !musicToggleLabel) {
+  if (!musicToggle || !musicToggleLabel || !musicToggleIcon) {
     return;
   }
 
@@ -30,10 +36,13 @@ function updateMusicControl(isPlaying, status) {
     isPlaying ? "Turn background music off" : "Turn background music on"
   );
   musicToggleLabel.textContent = isPlaying ? "Music on" : "Music off";
+  musicToggleIcon.textContent = isPlaying ? "♫" : "♪";
   if (status && musicStatus) {
     musicStatus.textContent = status;
   }
 }
+
+updateMusicControl(Boolean(audio && !audio.paused));
 
 function startBackgroundMusic() {
   if (!audio) {
@@ -41,18 +50,58 @@ function startBackgroundMusic() {
     return;
   }
 
-  try {
-    audio.play().catch(() => updateMusicControl(false, "Music couldn't start; you can keep going."));
-  } catch {
-    updateMusicControl(false, "Music couldn't start; you can keep going.");
-  }
-}
-
-function showStep(nextStep) {
-  if (nextStep < 0 || nextStep >= screens.length || nextStep === currentStep) {
+  if (!audio.paused) {
+    updateMusicControl(true, "Music is playing");
     return;
   }
 
+  if (isMusicStarting) {
+    return;
+  }
+
+  isMusicStarting = true;
+  const currentMusicRequest = ++musicRequest;
+  musicError = "";
+  updateMusicControl(false, "Starting background music...");
+
+  try {
+    audio.play().catch(() => {
+      if (currentMusicRequest !== musicRequest) {
+        return;
+      }
+      isMusicStarting = false;
+      musicError = "Music couldn't start; you can keep going.";
+      updateMusicControl(false, musicError);
+    });
+  } catch {
+    isMusicStarting = false;
+    musicError = "Music couldn't start; you can keep going.";
+    updateMusicControl(false, musicError);
+  }
+}
+
+function finishScreenTransition(event) {
+  const activeScreen = screens[currentStep];
+  if (event && event.target !== activeScreen) {
+    return;
+  }
+
+  activeScreen.removeEventListener("animationend", finishScreenTransition);
+  window.clearTimeout(transitionFallback);
+  isTransitioning = false;
+}
+
+function showStep(nextStep) {
+  if (
+    isTransitioning ||
+    nextStep < 0 ||
+    nextStep >= screens.length ||
+    nextStep === currentStep
+  ) {
+    return;
+  }
+
+  isTransitioning = true;
   currentStep = nextStep;
   screens.forEach((screen) => {
     screen.hidden = screen !== screens[currentStep];
@@ -80,7 +129,10 @@ function showStep(nextStep) {
   if (progressLabel) {
     progressLabel.textContent = `A little note · ${currentStep + 1} of ${screens.length}`;
   }
-  screens[currentStep].querySelector("h1, h2")?.focus();
+  const activeScreen = screens[currentStep];
+  activeScreen.addEventListener("animationend", finishScreenTransition);
+  transitionFallback = window.setTimeout(finishScreenTransition, 600);
+  activeScreen.querySelector("h1, h2")?.focus();
 
   if (currentStep !== 3 && heartMessage) {
     heartMessage.hidden = true;
@@ -89,6 +141,9 @@ function showStep(nextStep) {
 
 document.querySelectorAll("[data-next]").forEach((button) => {
   button.addEventListener("click", () => {
+    if (isTransitioning) {
+      return;
+    }
     if (currentStep === 0) {
       startBackgroundMusic();
     }
@@ -97,10 +152,15 @@ document.querySelectorAll("[data-next]").forEach((button) => {
 });
 
 document.querySelectorAll("[data-back]").forEach((button) => {
-  button.addEventListener("click", () => showStep(currentStep - 1));
+  button.addEventListener("click", () => {
+    if (!isTransitioning) {
+      showStep(currentStep - 1);
+    }
+  });
 });
 
 function returnToWelcome() {
+  finishScreenTransition();
   showStep(0);
   history.replaceState(null, "", "#welcome");
 }
@@ -113,15 +173,20 @@ document.querySelector(".wordmark")?.addEventListener("click", (event) => {
 
 if (audio) {
   audio.addEventListener("playing", () => {
+    isMusicStarting = false;
+    musicError = "";
     updateMusicControl(true, "Music is playing");
   });
 
   audio.addEventListener("pause", () => {
-    updateMusicControl(false, "Music is paused");
+    isMusicStarting = false;
+    updateMusicControl(false, musicError || "Music is paused");
   });
 
   audio.addEventListener("error", () => {
-    updateMusicControl(false, "Music couldn't play; you can keep going.");
+    isMusicStarting = false;
+    musicError = "Music couldn't play; you can keep going.";
+    updateMusicControl(false, musicError);
   });
 }
 
@@ -131,9 +196,16 @@ musicToggle?.addEventListener("click", () => {
     return;
   }
 
-  if (audio.paused) {
+  if (audio.paused && isMusicStarting) {
+    musicRequest += 1;
+    isMusicStarting = false;
+    audio.pause();
+    updateMusicControl(false, "Music is paused");
+  } else if (audio.paused) {
     startBackgroundMusic();
   } else {
+    musicRequest += 1;
+    musicError = "";
     audio.pause();
   }
 });
@@ -143,6 +215,7 @@ function createHeartBurst() {
     return;
   }
 
+  heartStage.querySelectorAll(".heart-particle").forEach((particle) => particle.remove());
   const colors = ["#f3c4e2", "#d7c3ff", "#ffe0ed", "#cbb8ff", "#f4d9a8"];
 
   for (let index = 0; index < 11; index += 1) {

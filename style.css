@@ -243,7 +243,7 @@ a:focus-visible {
 .screen {
   width: 100%;
   min-width: 0;
-  animation: screen-arrive .55s ease both;
+  animation: screen-arrive .42s ease-out both;
   text-align: center;
 }
 
@@ -798,7 +798,7 @@ h2 {
 }
 
 @keyframes screen-arrive {
-  from { opacity: 0; transform: translateY(9px); }
+  from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
