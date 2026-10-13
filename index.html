@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#171326" />
+    <meta
+      name="description"
+      content="A little apology, made with love for Stefiii."
+    />
+    <title>For Stefiii 💜 — A Little Apology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="sky" aria-hidden="true">
+      <span class="star star-one"></span>
+      <span class="star star-two"></span>
+      <span class="star star-three"></span>
+      <span class="star star-four"></span>
+      <span class="star star-five"></span>
+      <span class="star star-six"></span>
+      <span class="floating-heart heart-one">♡</span>
+      <span class="floating-heart heart-two">♡</span>
+      <span class="floating-heart heart-three">♡</span>
+    </div>
+
+    <header class="topbar">
+      <a
+        class="wordmark"
+        href="#welcome"
+        aria-label="For Stefiii, back to the beginning"
+      >
+        <span class="wordmark-heart" aria-hidden="true">♥</span>
+        <span>for stefiii</span>
+      </a>
+      <div class="music">
+        <button
+          class="music-toggle"
+          id="music-toggle"
+          type="button"
+          aria-label="Turn background music on"
+          aria-pressed="false"
+        >
+          <span class="music-toggle-icon" aria-hidden="true">♫</span>
+          <span id="music-toggle-label">Music off</span>
+        </button>
+        <span
+          class="music-status"
+          id="music-status"
+          role="status"
+          aria-live="polite"
+          >Starts with your surprise</span
+        >
+        <audio
+          id="background-music"
+          src="assets/Kali%20Uchis%20-%20All%20I%20Can%20Say%20(Lyrics).mp3"
+          loop
+          preload="none"
+          hidden
+        ></audio>
+      </div>
+    </header>
+
+    <main class="experience">
+      <nav class="progress" aria-label="Apology journey progress">
+        <span class="progress-label" id="progress-label"
+          >A little note · 1 of 4</span
+        >
+        <ol class="progress-track">
+          <li>
+            <span
+              class="progress-dot is-current"
+              data-progress-step="0"
+              aria-current="step"
+              ><span class="visually-hidden"
+                >Step 1: Welcome, current step</span
+              ></span
+            >
+          </li>
+          <li>
+            <span class="progress-dot" data-progress-step="1"
+              ><span class="visually-hidden"
+                >Step 2: A little reminder</span
+              ></span
+            >
+          </li>
+          <li>
+            <span class="progress-dot" data-progress-step="2"
+              ><span class="visually-hidden">Step 3: My apology</span></span
+            >
+          </li>
+          <li>
+            <span class="progress-dot" data-progress-step="3"
+              ><span class="visually-hidden"
+                >Step 4: The final note and memories</span
+              ></span
+            >
+          </li>
+        </ol>
+      </nav>
+
+      <section
+        class="screen welcome-screen"
+        id="welcome"
+        data-screen="0"
+        aria-labelledby="welcome-title"
+      >
+        <div class="welcome-orbit" aria-hidden="true"><span>♡</span></div>
+        <p class="eyebrow">A little something, from my heart</p>
+        <h1 id="welcome-title" tabindex="-1">
+          Hey, <span>Stefiii</span>
+          <span class="title-heart" aria-hidden="true">💜</span>
+        </h1>
+        <p class="welcome-subtitle">I made a little something for you...</p>
+        <p class="welcome-copy">
+          There's something I want to tell you, from my heart.
+        </p>
+        <button class="primary-button" type="button" data-next>
+          Open my little surprise <span aria-hidden="true">✨</span>
+        </button>
+        <p class="tiny-note">
+          <span aria-hidden="true">✦</span> Take this at your own pace
+          <span aria-hidden="true">✦</span>
+        </p>
+      </section>
+
+      <section
+        class="screen text-screen"
+        id="reminder"
+        data-screen="1"
+        aria-labelledby="reminder-title"
+        hidden
+      >
+        <div class="step-icon" aria-hidden="true">✦</div>
+        <p class="eyebrow">A little reminder</p>
+        <h2 id="reminder-title" tabindex="-1">Before anything else...</h2>
+        <figure class="reminder-photo">
+          <img
+            src="assets/photo2.webp"
+            alt="Stefiii sharing a lovely smile in a favorite photo."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            A little memory with you <span aria-hidden="true">💜</span>
+          </figcaption>
+        </figure>
+        <div class="reminder-copy">
+          <p>
+            You mean so much to me, Stefiii. Even when I mess up, that will
+            never change how much I care about you.
+          </p>
+          <p>
+            I adore you, and I want to be with you. I want to be someone who
+            brings a smile to your face, makes your heart feel safe, and gives
+            you a thousand little reasons to be happy.
+          </p>
+          <p>
+            I know I won't always get everything right, but I promise to keep
+            learning, growing, and showing you how much you mean to me. You
+            deserve love that you can feel, not just words that you can read. 💜
+          </p>
+        </div>
+        <div class="button-row">
+          <button class="back-button" type="button" data-back>Go back</button>
+          <button class="primary-button" type="button" data-next>
+            Continue to your little note <span aria-hidden="true">💌</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="screen apology-screen"
+        id="apology"
+        data-screen="2"
+        aria-labelledby="apology-title"
+        hidden
+      >
+        <p class="eyebrow">From me, to you</p>
+        <h2 id="apology-title" tabindex="-1">My apology</h2>
+        <article class="letter-card">
+          <div class="letter-topline">
+            <span>For Stefiii</span><span aria-hidden="true">♡</span>
+          </div>
+          <p class="letter-greeting">Stefiii,</p>
+          <p class="letter-body">
+            Stefiii, I'm genuinely sorry for what I said and for hurting you.
+            You didn't deserve those words from me, and I understand that even
+            when I don't mean to hurt you, my words can still have an impact on
+            how you feel. You mean so much to me, and the last thing I ever want
+            is to make you feel small, hurt, or misunderstood. I know that
+            simply saying sorry isn't enough, and I don't want my apology to be
+            just another set of words. I know I'm not perfect, and I know I can
+            make mistakes, but I also believe that what matters is how I learn
+            from them. I want to reflect on my actions, work on myself, and
+            become a better person, not just for you, but for myself too. I want
+            to understand where I went wrong, be more thoughtful with my words,
+            and make sure I don't repeat the same mistake. I'm not expecting you
+            to forget what happened or to stop being upset just because I'm
+            apologising. Your feelings matter to me, and you deserve the time
+            and space you need. I just want you to know that I recognise my
+            mistake, I regret hurting you, and I'm serious about learning from
+            it. I adore you, Stefiii. 💜 You mean more to me than I can explain,
+            and I want to be someone who brings happiness, comfort, and peace
+            into your life, not someone who makes you question your worth. I
+            can't promise I'll never make a mistake, but I can promise to keep
+            learning, take responsibility when I'm wrong, and put genuine effort
+            into becoming better. I'm truly sorry, my girl. You deserve kindness
+            from me, in my words and in my actions. 💗
+            <span aria-label="purple heart">💜</span>
+          </p>
+          <p class="letter-signoff">
+            With all my heart, <span aria-hidden="true">♡</span>
+          </p>
+        </article>
+        <div class="button-row">
+          <button class="back-button" type="button" data-back>Go back</button>
+          <button class="primary-button" type="button" data-next>
+            One last little thing... <span aria-hidden="true">💜</span>
+          </button>
+        </div>
+      </section>
+
+      <section
+        class="screen final-screen"
+        id="final-note"
+        data-screen="3"
+        aria-labelledby="final-title"
+        hidden
+      >
+        <div class="final-halo" aria-hidden="true"><span>♡</span></div>
+        <p class="eyebrow">Just one last thing</p>
+        <h2 id="final-title" tabindex="-1">A little note for you</h2>
+        <div class="final-copy">
+          <p>
+            If I could give you one thing right now, it would be a little
+            reminder of how special you are to me.
+            <span aria-label="purple heart">💜</span>
+          </p>
+          <p>
+            I'm sorry, Stefiii. I'll let my actions speak louder than this page.
+          </p>
+        </div>
+        <div class="heart-stage" id="heart-stage">
+          <button class="heart-button" id="heart-button" type="button">
+            Send you a little heart <span aria-hidden="true">💜</span>
+          </button>
+          <p
+            class="heart-message"
+            id="heart-message"
+            role="status"
+            aria-live="polite"
+            hidden
+          >
+            A little heart, just for you. 💜
+          </p>
+        </div>
+        <div class="button-row final-navigation">
+          <button class="back-button" type="button" data-back>Go back</button>
+          <button class="primary-button" type="button" data-home>
+            Back to the beginning <span aria-hidden="true">💜</span>
+          </button>
+        </div>
+
+        <section class="memories-section" aria-labelledby="memories-title">
+          <p class="eyebrow">Little pieces of us</p>
+          <h3 id="memories-title">
+            Our Little Memories <span aria-hidden="true">💜</span>
+          </h3>
+          <p class="memories-intro">Tap a little keepsake to open it.</p>
+          <div class="memory-grid">
+            <figure class="memory-card">
+              <button
+                class="memory-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-label="Reveal memory: One of my favourite memories with you"
+              >
+                <span class="photo-frame">
+                  <span class="photo-placeholder">
+                    <span class="placeholder-heart" aria-hidden="true">♡</span>
+                    <span class="memory-label">A favourite moment</span>
+                    <span class="photo-hint">Tap to reveal</span>
+                  </span>
+                  <img
+                    class="memory-photo"
+                    alt="A favourite moment together with Stefiii."
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span class="card-heart" aria-hidden="true">♡</span>
+              </button>
+              <figcaption>One of my favourite memories with you 💗</figcaption>
+              <p
+                class="memory-status"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+            </figure>
+
+            <figure class="memory-card">
+              <button
+                class="memory-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-label="Reveal memory: Your smile always makes my day"
+              >
+                <span class="photo-frame">
+                  <span class="photo-placeholder">
+                    <span class="placeholder-heart" aria-hidden="true">♡</span>
+                    <span class="memory-label">That lovely smile</span>
+                    <span class="photo-hint">Tap to reveal</span>
+                  </span>
+                  <img
+                    class="memory-photo"
+                    alt="Stefiii smiling in a favorite photo."
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span class="card-heart" aria-hidden="true">♡</span>
+              </button>
+              <figcaption>Your smile always makes my day 🥹</figcaption>
+              <p
+                class="memory-status"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+            </figure>
+
+            <figure class="memory-card">
+              <button
+                class="memory-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-label="Reveal memory: A little moment I want to remember forever"
+              >
+                <span class="photo-frame">
+                  <span class="photo-placeholder">
+                    <span class="placeholder-heart" aria-hidden="true">♡</span>
+                    <span class="memory-label">A moment to keep</span>
+                    <span class="photo-hint">Tap to reveal</span>
+                  </span>
+                  <img
+                    class="memory-photo"
+                    alt="A special moment together to remember forever."
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
+                <span class="card-heart" aria-hidden="true">♡</span>
+              </button>
+              <figcaption>
+                A little moment I want to remember forever 💜
+              </figcaption>
+              <p
+                class="memory-status"
+                role="status"
+                aria-live="polite"
+                hidden
+              ></p>
+            </figure>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Made with love, just for Stefiii <span aria-hidden="true">💜</span>
+    </footer>
+  </body>
+</html>
